@@ -23,10 +23,12 @@
         ' -> We just have to stop and check whenever there are 9 new numbers
         For i As Integer = 0 To 80
             myNineTempNumbers.Add(mySudokoData(i))
-            If myNineTempNumbers.Count = 9 AndAlso Not CheckNineNumbers(myNineTempNumbers) Then
-                Return False
-            Else
-                myNineTempNumbers.Clear()
+            If myNineTempNumbers.Count = 9 Then
+                If CheckNineNumbers(myNineTempNumbers) Then
+                    myNineTempNumbers.Clear()
+                Else
+                    Return False
+                End If
             End If
         Next
 
@@ -55,10 +57,10 @@
                     myNineTempNumbers.Add(mySudokoData(i + l + k + 9))
                     myNineTempNumbers.Add(mySudokoData(i + l + k + 18))
                 Next
-                If myNineTempNumbers.Count = 9 AndAlso Not CheckNineNumbers(myNineTempNumbers) Then
-                    Return False
-                Else
+                If CheckNineNumbers(myNineTempNumbers) Then
                     myNineTempNumbers.Clear()
+                Else
+                    Return False
                 End If
             Next
         Next
