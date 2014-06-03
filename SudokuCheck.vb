@@ -47,42 +47,20 @@
         Next
 
         'Check Quadrats
-        ' -> We basically just get three numbers of a column and do that three times
+        ' -> We basically just get three numbers of a column and do that three times for each quadrat
         For i As Integer = 0 To 54 Step 27
-            For k As Integer = 0 To 2
-                myNineTempNumbers.Add(mySudokoData(i + k))
-                myNineTempNumbers.Add(mySudokoData(i + k + 9))
-                myNineTempNumbers.Add(mySudokoData(i + k + 18))
+            For l As Integer = 0 To 6 Step 3
+                For k As Integer = 0 To 2
+                    myNineTempNumbers.Add(mySudokoData(i + l + k))
+                    myNineTempNumbers.Add(mySudokoData(i + l + k + 9))
+                    myNineTempNumbers.Add(mySudokoData(i + l + k + 18))
+                Next
+                If myNineTempNumbers.Count = 9 AndAlso Not CheckNineNumbers(myNineTempNumbers) Then
+                    Return False
+                Else
+                    myNineTempNumbers.Clear()
+                End If
             Next
-            If myNineTempNumbers.Count = 9 AndAlso Not CheckNineNumbers(myNineTempNumbers) Then
-                Return False
-            Else
-                myNineTempNumbers.Clear()
-            End If
-        Next
-        For i As Integer = 3 To 57 Step 27
-            For k As Integer = 0 To 2
-                myNineTempNumbers.Add(mySudokoData(i + k))
-                myNineTempNumbers.Add(mySudokoData(i + k + 9))
-                myNineTempNumbers.Add(mySudokoData(i + k + 18))
-            Next
-            If myNineTempNumbers.Count = 9 AndAlso Not CheckNineNumbers(myNineTempNumbers) Then
-                Return False
-            Else
-                myNineTempNumbers.Clear()
-            End If
-        Next
-        For i As Integer = 6 To 60 Step 27
-            For k As Integer = 0 To 2
-                myNineTempNumbers.Add(mySudokoData(i + k))
-                myNineTempNumbers.Add(mySudokoData(i + k + 9))
-                myNineTempNumbers.Add(mySudokoData(i + k + 18))
-            Next
-            If myNineTempNumbers.Count = 9 AndAlso Not CheckNineNumbers(myNineTempNumbers) Then
-                Return False
-            Else
-                myNineTempNumbers.Clear()
-            End If
         Next
 
         'Yay, it's correct :)
